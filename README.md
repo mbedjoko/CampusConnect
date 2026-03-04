@@ -23,7 +23,7 @@ git checkout HenriF-feature
 git fetch origin
 git merge origin/main
 
-Développer les fonctionnalités liées aux cours et inscriptions.
+Développer les fonctionnalités liées aux cours et inscriptions et Group.
 
 Commit régulier et clair :
 
