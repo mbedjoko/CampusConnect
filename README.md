@@ -76,7 +76,7 @@ git push origin --delete <votre-branche>
 | Membre    | Branche           | Tâches / Modules assignés            |
 |-----------|-----------------|-------------------------------------|
 | BongaD    | BongaD-feature  | Actors, gestion des étudiants       |
-| HenriF   | HenriF-feature   | Courses, inscription aux cours      |
+| HenriF   | HenriF-feature   | Courses, inscription aux cours, group|
 | BriceK   | BriceK-feature   | Planning, calendrier, organisation  |
 | MekemeB  | MekemeB-feature  | UI, interface console, affichages   |
 | KoagneD  | KoagneD-feature  | Exceptions, validations, erreurs    |
