@@ -70,13 +70,16 @@ git push origin --delete <votre-branche>
 
 ---
 
-### 3️⃣ Convention de nommage des branches
+### 3️⃣ Branches et tâches assignées
 
-| Type de branche       | Exemple         |
-| --------------------- | --------------- |
-| Feature principale    | MekemeB-feature |
-| Correction de bug     | MekemeB-bugfix  |
-| Interface utilisateur | MekemeB-ui      |
+
+| Membre    | Branche           | Tâches / Modules assignés            |
+|-----------|-----------------|-------------------------------------|
+| BongaD    | BongaD-feature  | Actors, gestion des étudiants       |
+| HenriF   | HenriF-feature   | Courses, inscription aux cours      |
+| BriceK   | BriceK-feature   | Planning, calendrier, organisation  |
+| MekemeB  | MekemeB-feature  | UI, interface console, affichages   |
+| KoagneD  | KoagneD-feature  | Exceptions, validations, erreurs    |
 
 > Chaque branche correspond à **une personne ou une fonctionnalité spécifique**.
 
