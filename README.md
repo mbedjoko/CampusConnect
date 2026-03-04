@@ -1,3 +1,5 @@
+---
+
 ## 🔹 README pour HenriF (Courses / inscription aux cours)
 
 ```markdown
