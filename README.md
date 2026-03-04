@@ -1,10 +1,10 @@
 ---
 
-## 🔹 README pour HenriF (Courses / inscription aux cours)
+## 🔹 README pour HenriF (Courses / inscription aux cours et Group) 
 
 ```markdown
 # Branch: HenriF-feature
-# Module: Courses / Inscriptions aux cours
+# Module: Courses / Inscriptions aux cours et Group
 
 Salut HenriF 👋,
 
