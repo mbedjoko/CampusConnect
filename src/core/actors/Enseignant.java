@@ -2,27 +2,32 @@ package core.actors;
 
 import java.util.ArrayList;
 import java.util.List;
-import core.courses.Cours;
+import java.time.LocalDate;
+import core.courses.Cours; // Stub
 
 public class Enseignant extends Personne {
-    private String employeeId;
-    private List<Cours> assignedCourses;
+    private String statut; // permanent  vacataire
+    private String departement;
+    private List<Cours> coursEnseignes;
 
-    public Enseignant(int id, String name, String email, String employeeId) {
-        super(id, name, email);
-        this.employeeId = employeeId;
-        this.assignedCourses = new ArrayList<>();
-    }
+    public Enseignant(String nom, String prenom, String email, String statut, LocalDate dateNaissance, String departement) {
+        super(name, prenom, email, dateNaissance);
+        this.statut = statut;
+        this.departement = departement;
+        this.coursEnseignes = new ArrayList<>();
+        }
 
-    public String getEmployeeId()           { return employeeId; }
-    public List<Cours> getAssignedCourses() { return assignedCourses; }
+    public String getStatut()           { return statut; }
+    public List<Cours> getCoursEnseignes() { return coursEnseignes; }
 
-    public void assignCourse(Cours cours) {
-        if (!assignedCourses.contains(cours)) {
-            assignedCourses.add(cours);
+    public void addCourse(Cours cours) {
+        if (!coursEnseignes.contains(cours)) {
+            coursEnseignes.add(cours);
         }
     }
 
     @Override
-    public String toString() { return id + " – " + name + " (" + employeeId + ")"; }
+    public void afficherInfos() {
+        System.out.println("[ENSEIGNANT]" + nom + "" + prenom + "| Statut:" + statut + "| Departement:" + departement);
+    }
 }
