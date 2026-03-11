@@ -1,27 +1,34 @@
 package core.actors;
+import java.time.LocalDate;
 
 public abstract class Personne {
+    private static int counter = 0; //ajout compteur statique pour l'id
     protected int id;
-    protected String name;
-    protected String email;
+    protected String nom;
+    protected String prenom; //ajout
+    protected String adresseMail;
+    protected LocalDate dateNaissance; //ajout
 
-    public Personne(int id, String name, String email) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
+    public Personne(String nom, String prenom, String adresseMail, LocalDate dateNaissance) {
+        this.id = "ID-" + (++counter);
+        this.nom = nom;
+        this.prenom = prenom;
+        setEmail(adresseMail); //setter pour valider
+        this.dateNaissance = dateNaissance;
     }
 
     public int getId()          { return id; }
-    public String getName()     { return name; }
-    public String getEmail()    { return email; }
+    public String getNom()     { return nom; }
+    public String getPrenom()    { return prenom; }
 
-    public void setName(String name)   { this.name = name; }
-    public void setEmail(String email) { this.email = email; }
-
-    public void displayInfo() {
-        System.out.println(id + " - " + name + " - " + email);
+    
+    public void setEmail(String email) {
+        if (email != null && email.contains("@")) {
+            this.adresseMail = email;
+        } else {
+            throw new IllegalArgumentException("Format mail invalide");
+        }
     }
 
-    @Override
-    public String toString() { return id + " – " + name; }
+    public abstract void afficherInfos();
 }
