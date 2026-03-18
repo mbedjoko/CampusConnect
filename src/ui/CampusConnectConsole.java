@@ -461,7 +461,7 @@ public class CampusConnectConsole extends Application {
         GridPane form = form();
         TextField fId    = field("Ex: S004");
         TextField fSalle = field("Ex: Amphi A");
-        TextField fJour  = field("Ex: Lundi");
+        TextField fJour  = field("Ex: 2026-03-23");
         TextField fDebut = field("HH:mm");
         TextField fFin   = field("HH:mm");
         ComboBox<Groupe>     cbGrp = combo(groupesList);
@@ -474,7 +474,7 @@ public class CampusConnectConsole extends Application {
         formRow(form, 2, "Enseignant :",    cbEns);
         formRow(form, 3, "Cours :",         cbCrs);
         formRow(form, 4, "Salle :",         fSalle);
-        formRow(form, 5, "Jour :",          fJour);
+        formRow(form, 5, "Date :",         fJour);
         formRow(form, 6, "Début (HH:mm) :", fDebut);
         formRow(form, 7, "Fin   (HH:mm) :", fFin);
 
@@ -535,6 +535,12 @@ public class CampusConnectConsole extends Application {
             }
             if (fDebut.getText().compareTo(fFin.getText()) >= 0) {
                 alert("L'heure de fin doit être après l'heure de début."); return;
+            }
+            try {
+                java.time.LocalDate.parse(fJour.getText().trim());
+            } catch (Exception ex) {
+                alert("Date invalide. Format attendu : YYYY-MM-DD (ex: 2026-03-23).");
+                return;
             }
             Seance s = new Seance(fId.getText().trim(), cbGrp.getValue(), cbEns.getValue(),
                     cbCrs.getValue(), fSalle.getText().trim(),
@@ -599,9 +605,9 @@ public class CampusConnectConsole extends Application {
         groupesList.addAll(g1, g2);
 
         try {
-            Seance se1 = new Seance("S001", g1, e1, c1, "Amphi A",    "Lundi",    "08:00", "10:00");
-            Seance se2 = new Seance("S002", g2, e1, c1, "Salle 402",  "Lundi",    "10:30", "12:30");
-            Seance se3 = new Seance("S003", g1, e2, c2, "Amphi A",    "Mercredi", "08:00", "10:00");
+            Seance se1 = new Seance("S001", g1, e1, c1, "Amphi A",    "2026-03-23", "08:00", "10:00");
+            Seance se2 = new Seance("S002", g2, e1, c1, "Salle 402",  "2026-03-23", "10:30", "12:30");
+            Seance se3 = new Seance("S003", g1, e2, c2, "Amphi A",    "2026-03-25", "08:00", "10:00");
             planning.addSeance(se1); planning.addSeance(se2); planning.addSeance(se3);
             seancesList.addAll(se1, se2, se3);
         } catch (ConflitHoraireException ignored) {}
