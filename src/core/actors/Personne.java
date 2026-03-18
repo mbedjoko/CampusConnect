@@ -1,15 +1,39 @@
 package core.actors;
 import java.time.LocalDate;
 
-public abstract class Personne {
-    private static int counter = 0; //ajout compteur statique pour l'id
-    protected int id;
-    protected String nom;
-    protected String prenom; //ajout
-    protected String adresseMail;
-    protected LocalDate dateNaissance; //ajout
 
-    public Personne(String nom, String prenom, String adresseMail, LocalDate dateNaissance) {
+    /**
+     * classe abstraite qui represente une personne dans le systeme
+     * <p>
+     * elle englobe les informations commun(nom, prenom, email) d'une personne(etudiant et enseignant)
+     * elle ne peut pas etre instancie directement
+     * </p>
+     * 
+     * @author Mondo Daniel
+     * @version 1.0
+     */
+
+public abstract class Personne {
+
+    /** compteur statique pour generer automatiquement les identifiants uniques */
+    private static int counter = 0;
+
+    protected String id;
+    protected String nom;
+    protected String prenom;
+    protected String adresseMail;
+    protected LocalDate dateNaissance;
+
+    /**
+     * construit une nouvelle personne et genere automatiquement son identifiant
+     * 
+     * @param nom Nom de famille d'une personne
+     * @param prenom Prenom d'une personne
+     * @param adresseMail Adresse email avec un "@"
+     * @param dateNaissance Date de naissance d'une personne
+     */
+
+public Personne(String nom, String prenom, String adresseMail, LocalDate dateNaissance) {
         this.id = "ID-" + (++counter);
         this.nom = nom;
         this.prenom = prenom;
@@ -17,18 +41,49 @@ public abstract class Personne {
         this.dateNaissance = dateNaissance;
     }
 
-    public int getId()          { return id; }
+    /**
+     * retourne le nom complet de la personne
+     * <p>cette methode facilite l'integration avec les modules externes</p>
+     * 
+     * @return une chaine de caractere contenant le prenom et le nom
+     */
+    public String getName() {
+        return this.nom + " " + this.prenom;
+    }
+
+    /** @return l'identifiant unique de la personne */
+    public String getId()          { return id; }
+
+    /** @return le nom de famille */
     public String getNom()     { return nom; }
+
+    /** @return le prenom */
     public String getPrenom()    { return prenom; }
 
-    
-    public void setEmail(String email) {
-        if (email != null && email.contains("@")) {
-            this.adresseMail = email;
+    /** @return l'adresse mail */
+    public String getAdresseMail() { return adresseMail; }
+
+    /** @return date de naissance */
+    public LocalDate getDateNaissance() { return dateNaissance; }
+
+    /**
+     * modifie l'adresse mail apres verification du format
+     * 
+     * @param adresseMail la nouvelle adresse email
+     * @throws IllegalArgumentException si l'adresse ne contient pas "@"
+     */
+    public void setEmail(String adresseMail) {
+        if (adresseMail != null && adresseMail.contains("@")) {
+            this.adresseMail = adresseMail;
         } else {
-            throw new IllegalArgumentException("Format mail invalide");
+            throw new IllegalArgumentException("Format mail invalide : l'adresse doit contenir un '@'");
         }
     }
 
-    public abstract void afficherInfos();
+    /**
+     * affiche les details d'une personne
+     * <p>cette methode doit etre implementee par les sous classes
+     * pour afficher les informations propre a leur role (etudiant ou enseignant)</p>
+     */
+    public abstract void afficherDetails();
 }
