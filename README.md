@@ -1,44 +1,104 @@
+#  CampusConnect - Guide de collaboration Git
+
+## 📌 Workflow Git pour l'équipe
+
+Chaque membre de l'équipe travaille sur sa **branche personnelle** pour éviter d’écraser le travail des autres.  
+Les merges dans `main` se font **uniquement via Pull Request (PR)**.
+
+### 1️⃣ Branches personnelles
+Branches actives pour les membres :
+
+| Membre | Branche |
+|--------|---------|
+| MekemeB | MekemeB-feature |
+| BongaD  | BongaD-feature |
+| KoagneD | KoagneD-feature |
+| HenriF  | HenriF-feature |
+| BriceK  | BriceK-feature |
 
 ---
 
-## 🔹 README pour KoagneD (Exceptions / validations / erreurs)
+### 2️⃣ Workflow quotidien
 
-```markdown
-# Branch: KoagneD-feature
-# Module: Exceptions / Validations / Gestion des erreurs
-
-Salut KoagneD 👋,
-
-## 📌 Règles principales
-
-1. Travailler uniquement sur `KoagneD-feature`.
-2. Ne jamais toucher aux autres branches ou `main`.
-3. Consulter le README de `main` pour le guide général.
-
-## 🔹 Workflow quotidien
-
-1. Mettre à jour la branche avec `main` :
+1. **Cloner le repo**
 
 ```bash
-git checkout KoagneD-feature
+git clone https://github.com/mbedjoko/CampusConnect.git
+cd CampusConnect
+````
+
+2. **Récupérer sa branche personnelle**
+
+```bash
+git fetch origin
+git checkout -b <votre-branche> origin/<votre-branche>
+```
+
+> Exemple pour MekemeB :
+>
+> ```bash
+> git checkout -b MekemeB-feature origin/MekemeB-feature
+> ```
+
+3. **Travailler sur sa branche**
+
+```bash
+git add .
+git commit -m "Description claire de la modification"
+git push origin <votre-branche>
+```
+
+4. **Mettre sa branche à jour avec main avant PR**
+
+```bash
+git checkout <votre-branche>
 git fetch origin
 git merge origin/main
+git push origin <votre-branche>
+```
 
-Développer les exceptions et validations.
+5. **Créer une Pull Request (PR) vers `main`** sur GitHub
 
-Commit clair :
+   * Vérifier le code
+   * Merge uniquement après validation
 
-git add .
-git commit -m "Ajout / modification de <fonctionnalité>"
+6. **Supprimer les branches terminées**
 
-Pousser sur GitHub :
+```bash
+git push origin --delete <votre-branche>
+```
 
-git push origin KoagneD-feature
+---
 
-PR vers main après validation et tests.
+### 3️⃣ Branches et tâches assignées
 
-⚠️ Rappel
 
-Ne pas toucher aux autres branches.
+| Membre    | Branche           | Tâches / Modules assignés            |
+|-----------|-----------------|-------------------------------------|
+| BongaD    | BongaD-feature  | Actors, gestion des étudiants       |
+| HenriF   | HenriF-feature   | Courses, inscription aux cours et Group|
+| BriceK   | BriceK-feature   | Planning, calendrier, organisation  |
+| MekemeB  | MekemeB-feature  | UI, interface console, affichages   |
+| KoagneD  | KoagneD-feature  | Exceptions, validations, erreurs    |
 
-Doute → contacter l’admin.
+> Chaque branche correspond à **une personne ou une fonctionnalité spécifique**.
+
+---
+
+### 4️⃣ Bonnes pratiques
+
+* Ne jamais pousser directement sur `main`.
+* Faire des commits clairs et réguliers.
+* Tirer les dernières modifications de `main` avant de commencer.
+* Les Pull Requests doivent être vérifiées avant merge.
+* Mettre à jour le README et la documentation si nécessaire.
+
+---
+
+### 5️⃣ Évolutions possibles
+
+* Ajouter **GitHub Actions** pour tester automatiquement les PR.
+* Activer les **status checks** pour valider les merges automatiquement.
+* Passer à une organisation GitHub Team pour appliquer les **Branch Protection Rules**.
+
+
