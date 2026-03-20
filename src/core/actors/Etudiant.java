@@ -100,7 +100,8 @@ public String genererReleve() {
             sb.append("\n");
 
         for (Inscription ins : inscriptions) {
-            sb.append("GROUPE : ").append(ins.getGroupe().toString());
+           //sb.append("GROUPE : ").append(ins.getGroupe().toString());
+            sb.append("MATIERE : ").append(ins.getGroupe().getGroupId());
             sb.append("\n");
             sb.append("MATIERE : ").append(ins.getGroupe().toString());
             sb.append("\n");
