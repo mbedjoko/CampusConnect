@@ -25,9 +25,7 @@ public class Note {
      * 
      * @param valeur la note obtenue 
      * @param coefficient  le poids de la note
-     * @param NoteInvalideException si la valeur est <0 ou >20
-     * @return la valeur de la note
-     * @return le coefficient de la note
+     * @throws NoteInvalideException si la valeur est &lt; a 0 ou &gt; a 20
      */
 public Note(double valeur, double coefficient) throws NoteInvalideException {
         if (valeur < 0 || valeur > 20) {
@@ -37,9 +35,12 @@ public Note(double valeur, double coefficient) throws NoteInvalideException {
         this.coefficient = coefficient;
     }
 
+    /**@return la valeur de la note */
     public double getValeur () {
         return valeur;
     }
+
+    /**@return le coefficient de la note */
     public double getCoefficient() {
         return coefficient;
     }

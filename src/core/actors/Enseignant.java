@@ -61,10 +61,6 @@ public void addCourse(Cours cours) {
      * methode d'affichage pour inclure les details preofessionnels et la trace des enseignements
      * <p>affiche le role, l'identité complete, le statut et le departement et
      * la trace des enseignements</p>
-     * 
-     * @return le statut de l'enseignant
-     * @return le departement de rattachement
-     * @return la liste des cours dispensés
      */
     @Override
 public void afficherDetails() {
@@ -83,12 +79,17 @@ public void afficherDetails() {
         }
     }
     
+    /**@return le statut de l'enseignant */
     public String getStatut() {
         return statut;
     }
+
+    /**@return le departement de rattachement */
     public String getDepartement() {
         return departement;
     }
+
+    /**@return la liste des cours dispensés */
     public List<Cours> getCoursEnseignes() {
         return new ArrayList<>(coursEnseignes);
     }

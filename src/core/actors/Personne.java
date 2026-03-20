@@ -45,31 +45,35 @@ public Personne(String nom, String prenom, String adresseMail, LocalDate dateNai
 
     /**
      * retourne le nom complet de la personne
-     * <p>cette methode facilite l'integration avec les modules externes</p>
-     * 
-     * @return une chaine de caractere contenant le nom et le prenom
-     * @return l'identifiant unique de la personne
-     * @return le nom de famille
-     * @return le prenom
-     * @return l'adresse mail
-     * @return date de naissance
+     * <p>cette methode facilite l'integration avec les modules externes</p> 
      */
     
+    /**@return une chaine de caractere contenant le nom et le prenom */
     public String getName() {
         return this.nom + " " + this.prenom;
     }
+
+    /**@return l'identifiant unique de la personne */
     public String getId() { 
         return id;
     }
+
+    /**@return le nom de famille */
     public String getNom() {
         return nom;
     }
+
+    /**@return le prenom */
     public String getPrenom() {
         return prenom;
     }
+
+    /**@return l'adresse mail */
     public String getAdresseMail() {
         return adresseMail;
     }
+    
+    /**@return date de naissance */
     public LocalDate getDateNaissance() {
         return dateNaissance;
     }

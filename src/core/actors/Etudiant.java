@@ -132,25 +132,28 @@ public String genererReleve() {
     /**
      * methode d'affichage pour inclure les details academiques
      * <p>affiche le role, l'identite complete, le matricule et la filiere</p>
-     * 
-     * @return le matricule de l'etudiant
-     * @return la liste d'inscriptions
-     * @return l'ennee d'etude actuelle
-     * @return la filiere
      */
     @Override
 public void afficherDetails() {
         System.out.println("[ETUDIANT] [" + id + "] " + nom + " " + prenom + " | Adresse Mail: " + adresseMail + " | Date de Naissance: " + dateNaissance + " | Matricule: " + matricule + " | Niveau: " + anneeEtude + " | Filiere: " + filiere);
     }
+
+    /**@return le matricule de l'etudiant */
     public String getMatricule() {
         return matricule;
     }
+
+    /**@return la liste d'inscriptions */
     public List<Inscription> getInscriptions() {
         return inscriptions;
     }
+
+    /**@return l'ennee d'etude actuelle */
     public String getAnneeEtude() {
         return anneeEtude;
     }
+
+    /**@return la filiere */
     public String getFiliere() {
         return filiere;
     }
