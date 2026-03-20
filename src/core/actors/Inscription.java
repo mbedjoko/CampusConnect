@@ -1,36 +1,39 @@
 package core.actors;
+
 import java.util.ArrayList;
 import java.util.List;
 import core.exceptions.MoyenneIndisponibleException;
 import core.group.Groupe;
 
+    /**
+     * represente l'inscription d'un etudiant a un groupe de cours specifique
+     * <p>
+     * elle centralise les notes obtenues par l'etudiant pour ce groupe et permet de calculer la moyenne ponderée associé
+     * cette classe sert de lien entre l'etudiant et l'offre de formation (groupe)
+     * </p>
+     * 
+     * @author Mondo Daniel
+     * @version 1.0
+     */
 
-/**
- * represente l'inscription d'un etudiant a un groupe de cours specifique
- * <p>
- * elle centralise les notes obtenues par l'etudiant pour ce groupe et permet de calculer la moyenne ponderée associé
- * cette classe sert de lien entre l'etudiant et l'offre de formation (groupe)
- * </p>
- * 
- * @author Mondo Daniel
- * @version 1.0
- */
 public class Inscription {
     private Etudiant etudiant;
     private Groupe groupe;
     private List<Note> notes;
 
+
     /**
-     * crée une nouvelle isncription pour un étudiant dans un groupe 
+     * crée une nouvelle inscription pour un étudiant dans un groupe 
      * 
      * @param etudiant l'etudiant a inscrire 
-     * @param groupe le groupede cours cible 
+     * @param groupe le groupe de cours cible 
      */
 public Inscription(Etudiant etudiant, Groupe groupe) {
         this.etudiant = etudiant;
         this.groupe = groupe;
         this.notes = new ArrayList<>();
     }
+
 
     /**
      * ajoute une note a la liste des evaluations de cette inscription
@@ -43,18 +46,22 @@ public void addNote(Note note) {
     }
 }
 
-/**
- * calacule la moyenne ponderée de l'etudiant pour cette inscription
- * <p>
- * la moyenne est calculé en faisant la somme des (notes * coefficients)
- * divisé par la somme des coefficients
- * </p>
- * 
- * @return la moyenne ponderée
- * @throws MoyenneIndisponibleException si la liste des notes est vide
- */
 
-    public double calculerMoyenne() throws MoyenneIndisponibleException {
+    /**
+     * calacule la moyenne ponderée de l'etudiant pour cette inscription
+     * <p>
+     * la moyenne est calculé en faisant la somme des (notes * coefficients)
+     * divisé par la somme des coefficients
+     * </p>
+     * 
+     * @return la moyenne ponderée
+     * @return l'etudiant associé a cette inscription
+     * @return le groupe de cours concerné
+     * @return la liste des notes obtenues
+     * @throws MoyenneIndisponibleException si la liste des notes est vide
+     */
+
+public double calculerMoyenne() throws MoyenneIndisponibleException {
         if (notes.isEmpty()) {
             throw new MoyenneIndisponibleException("calcul impossible : Aucune note enregistree pour le cours lie au groupe" + groupe.toString());
         }
@@ -72,14 +79,13 @@ public void addNote(Note note) {
         return sum / coeffSum;
     }
 
-    /** @return l'etudiant associé a cette inscription */
     public Etudiant getEtudiant() {
         return etudiant;
     }
-
-    /** @return le groupe de cours concerné */
-    public Groupe getGroupe() { return groupe; }
-
-    /** @return la liste des notes obtenues */
-    public List<Note> getNotes() { return notes; }
+    public Groupe getGroupe() {
+        return groupe;
+    }
+    public List<Note> getNotes() {
+        return notes;
+    }
 }

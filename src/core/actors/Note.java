@@ -1,21 +1,24 @@
 package core.actors;
+
 import core.exceptions.NoteInvalideException;
 
-/**
- * represente une evaluation obtenue par un etudiant
- * <p>
- * une note est composé d'une valeur numerique et d'un coefficient
- * le systeme garantit qu'une note est toujours comprise dans l'intervalle de 0 a 20
- * </p>
- * 
- * @author Mondo Daniel
- * @version 1.0
- */
+    /**
+     * represente une evaluation obtenue par un etudiant
+     * <p>
+     * une note est composé d'une valeur numerique et d'un coefficient
+     * le systeme garantit qu'une note est toujours comprise dans l'intervalle de 0 a 20
+     * </p>
+     * 
+     * @author Mondo Daniel
+     * @version 1.0
+     */
+
 public class Note {
 
     /** la valeur numerique de la note (entre 0 et 20) */
     private double valeur;
     private double coefficient;
+
 
     /**
      * crée une nouvelle note avec validation de la valeur
@@ -23,6 +26,8 @@ public class Note {
      * @param valeur la note obtenue 
      * @param coefficient  le poids de la note
      * @param NoteInvalideException si la valeur est <0 ou >20
+     * @return la valeur de la note
+     * @return le coefficient de la note
      */
 public Note(double valeur, double coefficient) throws NoteInvalideException {
         if (valeur < 0 || valeur > 20) {
@@ -32,9 +37,10 @@ public Note(double valeur, double coefficient) throws NoteInvalideException {
         this.coefficient = coefficient;
     }
 
-    /** @return la valeur de la note */
-    public double getValeur () {return valeur;}
-
-    /** @return le coefficient de la note */
-    public double getCoefficient() {return coefficient;}
+    public double getValeur () {
+        return valeur;
+    }
+    public double getCoefficient() {
+        return coefficient;
+    }
 }
