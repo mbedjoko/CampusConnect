@@ -291,7 +291,7 @@ public class CampusConnectConsole extends Application {
                 for (Etudiant et : etudiantsList)
                     rows.add(java.util.Arrays.asList(et.getId(), et.getMatricule(), et.getName(), et.getAdresseMail(), et.getAnneeEtude(), et.getFiliere(), String.valueOf(et.getInscriptions().size())));
                 exporterListePDF("LISTE DES ÉTUDIANTS", headers, rows, dest);
-                alert("✅ PDF enregistré :\n" + dest.getAbsolutePath());
+                alert(  PDF enregistré :\n" + dest.getAbsolutePath());
             } catch (Exception ex) { alert("Erreur PDF :\n" + ex.getMessage()); }
         });
 
@@ -368,7 +368,7 @@ public class CampusConnectConsole extends Application {
                 for (Enseignant en : enseignantsList)
                     rows.add(java.util.Arrays.asList(en.getId(), en.getName(), en.getAdresseMail(), en.getStatut(), en.getDepartement(), String.valueOf(en.getCoursEnseignes().size())));
                 exporterListePDF("LISTE DES ENSEIGNANTS", headers, rows, dest);
-                alert("✅ PDF enregistré :\n" + dest.getAbsolutePath());
+                alert(  PDF enregistré :\n" + dest.getAbsolutePath());
             } catch (Exception ex) { alert("Erreur PDF :\n" + ex.getMessage()); }
         });
 
@@ -469,7 +469,7 @@ public class CampusConnectConsole extends Application {
                 for (Cours c : coursList)
                     rows.add(java.util.Arrays.asList(c.getCode(), c.getTitle(), String.valueOf(c.getCapacite()), String.valueOf(c.getEtudiants().size()), c.getEnseignantName()));
                 exporterListePDF("LISTE DES COURS", headers, rows, dest);
-                alert("✅ PDF enregistré :\n" + dest.getAbsolutePath());
+                alert(  PDF enregistré :\n" + dest.getAbsolutePath());
             } catch (Exception ex) { alert("Erreur PDF :\n" + ex.getMessage()); }
         });
 
@@ -557,7 +557,7 @@ public class CampusConnectConsole extends Application {
                 for (Groupe g : groupesList)
                     rows.add(java.util.Arrays.asList(g.getGroupId(), String.valueOf(g.getCapaciteMax()), String.valueOf(g.getNbEtudiants()), g.getEnseignantName()));
                 exporterListePDF("LISTE DES GROUPES", headers, rows, dest);
-                alert("✅ PDF enregistré :\n" + dest.getAbsolutePath());
+                alert(" PDF enregistré :\n" + dest.getAbsolutePath());
             } catch (Exception ex) { alert("Erreur PDF :\n" + ex.getMessage()); }
         });
 
@@ -636,22 +636,22 @@ public class CampusConnectConsole extends Application {
                     Seance a = all.get(i), b = all.get(j);
                     if (!a.overlapsWith(b)) continue;
                     if (a.getSalle().equals(b.getSalle())) {
-                        sb.append("❌ Salle [").append(a.getId()).append("] & [").append(b.getId()).append("] – ").append(a.getSalle()).append("\n");
+                        sb.append("  Salle [").append(a.getId()).append("] & [").append(b.getId()).append("] – ").append(a.getSalle()).append("\n");
                         found = true;
                     }
                     if (a.getEnseignant() != null && b.getEnseignant() != null
                             && a.getEnseignant().getId() == b.getEnseignant().getId()) {
-                        sb.append("❌ Enseignant [").append(a.getId()).append("] & [").append(b.getId()).append("] – ").append(a.getEnseignantName()).append("\n");
+                        sb.append("  Enseignant [").append(a.getId()).append("] & [").append(b.getId()).append("] – ").append(a.getEnseignantName()).append("\n");
                         found = true;
                     }
                     if (a.getGroupe() != null && b.getGroupe() != null
                             && a.getGroupe().getGroupId().equals(b.getGroupe().getGroupId())) {
-                        sb.append("❌ Groupe [").append(a.getId()).append("] & [").append(b.getId()).append("] – ").append(a.getGroupeId()).append("\n");
+                        sb.append("  Groupe [").append(a.getId()).append("] & [").append(b.getId()).append("] – ").append(a.getGroupeId()).append("\n");
                         found = true;
                     }
                 }
             }
-            conflictArea.setText(found ? sb.toString() : "✅ Aucun conflit détecté dans le planning.");
+            conflictArea.setText(found ? sb.toString() :   Aucun conflit détecté dans le planning.");
             conflictArea.setVisible(true); conflictArea.setManaged(true);
         });
 
@@ -701,7 +701,7 @@ public class CampusConnectConsole extends Application {
                 for (Seance s : seancesList)
                     rows.add(java.util.Arrays.asList(s.getId(), s.getJour(), s.getDebut(), s.getFin(), s.getGroupeId(), s.getEnseignantName(), s.getCoursTitle(), s.getSalle()));
                 exporterListePDF("PLANNING DES SÉANCES", headers, rows, dest);
-                alert("✅ PDF enregistré :\n" + dest.getAbsolutePath());
+                alert(  PDF enregistré :\n" + dest.getAbsolutePath());
             } catch (Exception ex) { alert("Erreur PDF :\n" + ex.getMessage()); }
         });
 
@@ -905,7 +905,7 @@ public class CampusConnectConsole extends Application {
             if (dest == null) return;
             try {
                 exporterPDF(etu, dest);
-                alert("✅ PDF enregistré :\n" + dest.getAbsolutePath());
+                alert(  PDF enregistré :\n" + dest.getAbsolutePath());
             } catch (Exception ex) {
                 alert("Erreur lors de la génération du PDF :\n" + ex.getMessage());
             }
