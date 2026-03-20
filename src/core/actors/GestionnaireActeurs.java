@@ -5,17 +5,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * gestionnaire centralisé des acteurs du systeme
- * <p>
- * cette classe sert a stocker et manipuler l'ensemble des personnes du systeme
- * elle utilise le polymorphisme(List) pour traiter les differents types d'acteurs et
- * une HashMap pour l'optimisation des recherhces
- * </p>
- * 
- * @author Mondo Daniel
- * @version 1.0
- */
+    /**
+     * gestionnaire centralisé des acteurs du systeme
+     * <p>
+     * cette classe sert a stocker et manipuler l'ensemble des personnes du systeme
+     * elle utilise le polymorphisme(List) pour traiter les differents types d'acteurs et
+     * une HashMap pour l'optimisation des recherhces
+     * </p>
+     * 
+     * @author Mondo Daniel
+     * @version 1.0
+     */
 
 public class GestionnaireActeurs {
     
@@ -31,20 +31,22 @@ public class GestionnaireActeurs {
      */
     private Map<String, Etudiant> indexEtudiants;
 
+
     /**
      * initialise une HashMap et un nouveau gestionnaire
      */
-    public GestionnaireActeurs() {
+public GestionnaireActeurs() {
         this.listePersonnes = new ArrayList<>();
         this.indexEtudiants = new HashMap<>();
     }
+
 
     /**
      * ajoute une nouvelle personne au registre de l'universite
      * 
      * @param p la personne (etudiant ou enseignant) a ajouter
      */
-    public void ajouterPersonne(Personne p) {
+public void ajouterPersonne(Personne p) {
         if (p != null) {
             listePersonnes.add(p);
 
@@ -65,7 +67,7 @@ public class GestionnaireActeurs {
      * @param matricule le matricule a rechercher
      * @return l'objet etudiant correspondant ou null si aucun etudiant n'est trouvé
      */
-    public Etudiant trouverEtudiant(String matricule) {
+public Etudiant trouverEtudiant(String matricule) {
         if (matricule == null) return null;
         return this.indexEtudiants.get(matricule); //utilisation de HashMap
     }
@@ -78,7 +80,7 @@ public class GestionnaireActeurs {
      * et java execute automatiquement la version approprié (etudiant ou enseignant)
      * </p>
      */
-    public void afficherToutLeMonde() {
+public void afficherToutLeMonde() {
         System.out.println("\n* LISTE DES ACTEURS DU CAMPUS");
         if (listePersonnes.isEmpty()) {
             System.out.println("(Aucun acteur enregistree)");
@@ -95,7 +97,7 @@ public class GestionnaireActeurs {
      * 
      * @return une liste qui contient tout les objets Personne
      */
-    public List<Personne> getListePersonnes() {
+public List<Personne> getListePersonnes() {
         return listePersonnes;
     }
 }
