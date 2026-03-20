@@ -32,7 +32,8 @@ public class Planning {
     public List<String> detecterConflits(Seance candidate) {
         List<String> conflits = new ArrayList<>();
         for (Seance existing : seances) {
-            if (existing.getId().equals(candidate.getId())) continue;
+            if (existing == candidate) continue;
+            if (!candidate.getId().isBlank() && existing.getId().equals(candidate.getId())) continue;
             if (!existing.overlapsWith(candidate)) continue;
 
             if (existing.getSalle() != null
@@ -58,7 +59,15 @@ public class Planning {
     public boolean checkConflits() {
         for (int i = 0; i < seances.size(); i++) {
             for (int j = i + 1; j < seances.size(); j++) {
-                if (seances.get(i).overlapsWith(seances.get(j))) return true;
+                Seance a = seances.get(i);
+                Seance b = seances.get(j);
+                if (!a.overlapsWith(b)) continue;
+
+                if (a.getSalle() != null && a.getSalle().equals(b.getSalle())) return true;
+                if (a.getEnseignant() != null && b.getEnseignant() != null
+                        && a.getEnseignant().getId() == b.getEnseignant().getId()) return true;
+                if (a.getGroupe() != null && b.getGroupe() != null
+                        && a.getGroupe().getGroupId().equals(b.getGroupe().getGroupId())) return true;
             }
         }
         return false;
