@@ -636,22 +636,22 @@ public class CampusConnectConsole extends Application {
                     Seance a = all.get(i), b = all.get(j);
                     if (!a.overlapsWith(b)) continue;
                     if (a.getSalle().equals(b.getSalle())) {
-                        sb.append("❌ Salle [").append(a.getId()).append("] & [").append(b.getId()).append("] – ").append(a.getSalle()).append("\n");
+                        sb.append("  Salle [").append(a.getId()).append("] & [").append(b.getId()).append("] – ").append(a.getSalle()).append("\n");
                         found = true;
                     }
                     if (a.getEnseignant() != null && b.getEnseignant() != null
                             && a.getEnseignant().getId() == b.getEnseignant().getId()) {
-                        sb.append("❌ Enseignant [").append(a.getId()).append("] & [").append(b.getId()).append("] – ").append(a.getEnseignantName()).append("\n");
+                        sb.append("  Enseignant [").append(a.getId()).append("] & [").append(b.getId()).append("] – ").append(a.getEnseignantName()).append("\n");
                         found = true;
                     }
                     if (a.getGroupe() != null && b.getGroupe() != null
                             && a.getGroupe().getGroupId().equals(b.getGroupe().getGroupId())) {
-                        sb.append("❌ Groupe [").append(a.getId()).append("] & [").append(b.getId()).append("] – ").append(a.getGroupeId()).append("\n");
+                        sb.append("  Groupe [").append(a.getId()).append("] & [").append(b.getId()).append("] – ").append(a.getGroupeId()).append("\n");
                         found = true;
                     }
                 }
             }
-            conflictArea.setText(found ? sb.toString() : "✅ Aucun conflit détecté dans le planning.");
+            conflictArea.setText(found ? sb.toString() :   Aucun conflit détecté dans le planning.");
             conflictArea.setVisible(true); conflictArea.setManaged(true);
         });
 
