@@ -651,7 +651,7 @@ public class CampusConnectConsole extends Application {
                     }
                 }
             }
-            conflictArea.setText(found ? sb.toString() :   Aucun conflit détecté dans le planning.");
+            conflictArea.setText(found ? sb.toString() : "✅ Aucun conflit détecté dans le planning.");
             conflictArea.setVisible(true); conflictArea.setManaged(true);
         });
 

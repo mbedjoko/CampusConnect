@@ -25,6 +25,54 @@ public class Groupe {
     private final Cours          cours;
     private final List<Etudiant> etudiants;
 
+    /**
+     * 2-arg convenience constructor (groupId, enseignant). Capacity defaults to 30.
+     * Used by TestActeurs.
+     */
+    public Groupe(String groupId, Enseignant enseignant) {
+        this(groupId, 30, enseignant);
+    }
+
+    /**
+     * Convenience constructor used by the UI (groupId, capaciteMax, enseignant).
+     * Type defaults to TD, cours and salle are null/virtual.
+     */
+    public Groupe(String groupId, int capaciteMax, Enseignant enseignant) {
+        if (groupId == null || groupId.isBlank())
+            throw new IllegalArgumentException("L'identifiant du groupe est obligatoire.");
+        if (capaciteMax <= 0)
+            throw new IllegalArgumentException("La capacité maximale doit être strictement positive.");
+        java.util.Objects.requireNonNull(enseignant, "L'enseignant est obligatoire.");
+
+        this.groupId     = groupId;
+        this.type        = TYPE_TD;
+        this.capaciteMax = capaciteMax;
+        this.enseignant  = enseignant;
+        this.salle       = null;
+        this.cours       = null;
+        this.etudiants   = new java.util.ArrayList<>();
+    }
+
+    /**
+     * Convenience constructor used by the UI form (groupId, capaciteMax, enseignant)
+     * — same as the 3-arg version but called with a String capacite parsed at call-site.
+     */
+    public Groupe(String groupId, String type, int capaciteMax, Enseignant enseignant) {
+        if (groupId == null || groupId.isBlank())
+            throw new IllegalArgumentException("L'identifiant du groupe est obligatoire.");
+        if (capaciteMax <= 0)
+            throw new IllegalArgumentException("La capacité maximale doit être strictement positive.");
+        java.util.Objects.requireNonNull(enseignant, "L'enseignant est obligatoire.");
+
+        this.groupId     = groupId;
+        this.type        = (type != null && !type.isBlank()) ? type : TYPE_TD;
+        this.capaciteMax = capaciteMax;
+        this.enseignant  = enseignant;
+        this.salle       = null;
+        this.cours       = null;
+        this.etudiants   = new java.util.ArrayList<>();
+    }
+
     public Groupe(String groupId, String type, int capaciteMax,
                   Enseignant enseignant, Salle salle, Cours cours) {
 
@@ -58,8 +106,9 @@ public class Groupe {
 
         if (isFull())
             throw new CapaciteDepasseeException(String.format(
-                "Groupe %s (%s) — cours %s complet [%d/%d]. Salle : %s.",
-                groupId, type, cours.getCode(), etudiants.size(), capaciteMax, salle.getIdSalle()));
+                "Groupe %s (%s) — complet [%d/%d].%s",
+                groupId, type, etudiants.size(), capaciteMax,
+                cours != null ? " Cours : " + cours.getCode() : ""));
 
         if (etudiants.contains(etudiant))
             throw new IllegalArgumentException(
@@ -80,7 +129,10 @@ public class Groupe {
 
     public void afficherListe() {
         System.out.printf("Groupe %s [%s] | %s | Salle : %s | %d/%d inscrits%n",
-            groupId, type, cours.getCode(), salle.getIdSalle(), etudiants.size(), capaciteMax);
+            groupId, type,
+            cours != null ? cours.getCode() : "(aucun)",
+            salle != null ? salle.getIdSalle() : "(aucune)",
+            etudiants.size(), capaciteMax);
         if (etudiants.isEmpty()) {
             System.out.println("  Aucun étudiant inscrit.");
         } else {
@@ -96,7 +148,11 @@ public class Groupe {
     public String         getType()           { return type;               }
     public int            getCapaciteMax()    { return capaciteMax;        }
     public int            getNombreInscrits() { return etudiants.size();   }
+    /** Alias for UI compatibility. */
+    public int            getNbEtudiants()    { return etudiants.size();   }
     public Enseignant     getEnseignant()     { return enseignant;         }
+    /** Alias for UI compatibility. */
+    public String         getEnseignantName() { return enseignant != null ? enseignant.getName() : "(aucun)"; }
     public Salle          getSalle()          { return salle;              }
     public Cours          getCours()          { return cours;              }
 
@@ -123,12 +179,16 @@ public class Groupe {
         if (!(o instanceof Groupe)) return false;
         Groupe g = (Groupe) o;
         return Objects.equals(groupId, g.groupId)
-            && Objects.equals(cours.getCode(), g.cours.getCode());
+            && Objects.equals(
+                cours != null ? cours.getCode() : null,
+                g.cours != null ? g.cours.getCode() : null);
     }
 
-    @Override public int    hashCode() { return Objects.hash(groupId, cours.getCode()); }
+    @Override public int    hashCode() { return Objects.hash(groupId, cours != null ? cours.getCode() : null); }
     @Override public String toString() {
         return String.format("Groupe[%s | %s | %s | %d/%d]",
-            groupId, type, cours.getCode(), etudiants.size(), capaciteMax);
+            groupId, type,
+            cours != null ? cours.getCode() : "(aucun)",
+            etudiants.size(), capaciteMax);
     }
 }

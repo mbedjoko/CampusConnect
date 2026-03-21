@@ -25,6 +25,14 @@ public class Cours {
     private final Map<String, Groupe>       groupes;
     private final Map<String, List<Double>> notes;
 
+    /**
+     * Convenience constructor used by the UI (code, title, capacite, enseignant).
+     * Uses sensible defaults: description = "", volumeHoraire = 1.
+     */
+    public Cours(String code, String intitule, int capacite, Enseignant enseignant) {
+        this(code, intitule, "", 1, capacite, enseignant);
+    }
+
     public Cours(String code, String intitule, String description,
                  int volumeHoraire, int capacite, Enseignant enseignant) {
 
@@ -144,6 +152,10 @@ public class Cours {
 
     public String     getCode()           { return code;                }
     public String     getIntitule()       { return intitule;            }
+    /** Alias for UI compatibility. */
+    public String     getTitle()          { return intitule;            }
+    /** Alias for UI compatibility. */
+    public String     getEnseignantName() { return enseignant != null ? enseignant.getName() : "(aucun)"; }
     public String     getDescription()    { return description;         }
     public int        getVolumeHoraire()  { return volumeHoraire;       }
     public int        getCapacite()       { return capacite;            }
