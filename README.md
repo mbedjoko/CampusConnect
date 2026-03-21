@@ -194,12 +194,12 @@ git push origin <votre-branche>
 
 ## Bonnes pratiques
 
-- ✅ Ne jamais pousser directement sur `main`
-- ✅ Un commit = une modification logique, avec un message clair
-- ✅ Toujours tirer `main` avant de commencer une session de travail
-- ✅ Tester localement avant de créer une PR
-- ✅ Résoudre les conflits de merge avant de soumettre
-- ⚠️ Ne jamais modifier la branche d'un autre membre
+- Ne jamais pousser directement sur `main`
+- Un commit = une modification logique, avec un message clair
+- Toujours tirer `main` avant de commencer une session de travail
+- Tester localement avant de créer une PR
+- Résoudre les conflits de merge avant de soumettre
+- Ne jamais modifier la branche d'un autre membre
 
 ---
 
