@@ -20,11 +20,10 @@ import core.courses.Cours;
      */
 
 public class Enseignant extends Personne {
-    
-    private String statut; //permanent ou vacataire
+
+    private String statut; // permanent ou vacataire
     private String departement;
     private Set<Cours> coursEnseignes;
-
 
     /**
      * construit un nouvel enseignant avec ses informations personnelles et professionnelles
@@ -36,60 +35,66 @@ public class Enseignant extends Personne {
      * @param statut (permanent ou vacataire)
      * @param departement Departement de rattachement
      */
-public Enseignant(String nom, String prenom, String adresseMail, LocalDate dateNaissance, String statut, String departement) {
+    public Enseignant(String nom, String prenom, String adresseMail, LocalDate dateNaissance,
+                      String statut, String departement) {
         super(nom, prenom, adresseMail, dateNaissance);
         this.statut = statut;
         this.departement = departement;
         this.coursEnseignes = new HashSet<>();
-        }
-
+    }
 
     /**
-     * ajoute un cours a la liste des enseignement dispensés par un enseignant
-     * <p> verifie si le cours n'est pas deja present pour eviter les doublons </p>
+     * ajoute un cours a la liste des enseignements dispenses par un enseignant
+     * <p>verifie si le cours n'est pas deja present pour eviter les doublons</p>
      * 
-     * @param cours le cours a ajouter 
+     * @param cours le cours a ajouter
      */
-public void addCourse(Cours cours) {
+    public void addCourse(Cours cours) {
         if (cours != null) {
-           this. coursEnseignes.add(cours);
+            this.coursEnseignes.add(cours);
         }
     }
     
 
     /**
-     * methode d'affichage pour inclure les details preofessionnels et la trace des enseignements
-     * <p>affiche le role, l'identité complete, le statut et le departement et
+     * methode d'affichage pour inclure les details professionnels et la trace des enseignements
+     * <p>affiche le role, l'identite complete, le statut, le departement et
      * la trace des enseignements</p>
      */
     @Override
-public void afficherDetails() {
-        System.out.println("[ENSEIGNANT] [" + id + "] " + nom + " " + prenom + " | Adresse Mail: " + adresseMail + " | Date de Naissance: " + dateNaissance + " | Statut : " + statut + " | Departement : " + departement);
-
-        //trace des cours enseignés
+    public void afficherDetails() {
+        System.out.println("[ENSEIGNANT] [" + id + "] " + nom + " " + prenom
+                + " | Adresse Mail: " + adresseMail
+                + " | Date de Naissance: " + dateNaissance
+                + " | Statut : " + statut
+                + " | Departement : " + departement);
         if (coursEnseignes.isEmpty()) {
-            System.out.println(" Cours Dispenses : Aucun");
+            System.out.println("  Cours Dispenses : Aucun");
         } else {
-            System.out.print(" Cours Dispenses : ");
-            //affiche l'intitulé du cours enseigné
+            System.out.print("  Cours Dispenses : ");
             for (Cours c : coursEnseignes) {
                 System.out.print(c + " ; ");
             }
             System.out.println();
         }
     }
-    
-    /**@return le statut de l'enseignant */
-    public String getStatut() {
-        return statut;
+
+    /**
+     * retourne une representation lisible de l'enseignant
+     * utilise par les ComboBox JavaFX et les logs
+     */
+    @Override
+    public String toString() {
+        return nom + " " + prenom + " (" + statut + ")";
     }
 
-    /**@return le departement de rattachement */
-    public String getDepartement() {
-        return departement;
-    }
+    /** @return le statut de l'enseignant */
+    public String getStatut() { return statut; }
 
-    /**@return la liste des cours dispensés */
+    /** @return le departement de rattachement */
+    public String getDepartement() { return departement; }
+
+    /** @return la liste des cours dispenses */
     public List<Cours> getCoursEnseignes() {
         return new ArrayList<>(coursEnseignes);
     }
