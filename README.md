@@ -1,4 +1,4 @@
-# CampusConnect 🎓
+# CampusConnect 
 
 > Système de gestion académique développé en Java — École Nationale Supérieure Polytechnique de Douala (ENSPD)  
 > Projet POO · Année académique 2025-2026
