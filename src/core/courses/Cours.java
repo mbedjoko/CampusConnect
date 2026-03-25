@@ -131,13 +131,13 @@ public class Cours {
     }
 
     public void afficherReleve() {
-        System.out.println("╔════════════════════════════════════════════════════╗");
-        System.out.printf ("║  [%s] %s%n", code, intitule);
-        System.out.printf ("║  Inscrits : %d/%d  |  Groupes : %d%n",
+        System.out.println("*****************************************************");
+        System.out.printf (">  [%s] %s%n", code, intitule);
+        System.out.printf (">  Inscrits : %d/%d  |  Groupes : %d%n",
             etudiants.size(), capacite, groupes.size());
-        System.out.println("╠════════════════════════════════════════════════════╣");
+        System.out.println("*****************************************************");
         if (etudiants.isEmpty()) {
-            System.out.println("║  Aucun étudiant inscrit.");
+            System.out.println(">  Aucun étudiant inscrit.");
         } else {
             for (Etudiant e : etudiants) {
                 double moy = calculerMoyenne(e);
@@ -147,7 +147,7 @@ public class Cours {
                     moy >= 0 ? String.format("%.2f/20", moy) : "—");
             }
         }
-        System.out.println("╚════════════════════════════════════════════════════╝");
+        System.out.println("*****************************************************");
     }
 
     public String     getCode()           { return code;                }
