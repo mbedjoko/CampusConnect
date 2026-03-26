@@ -131,23 +131,34 @@ public class Cours {
     }
 
     public void afficherReleve() {
-        System.out.println("*****************************************************");
-        System.out.printf (">  [%s] %s%n", code, intitule);
-        System.out.printf (">  Inscrits : %d/%d  |  Groupes : %d%n",
+        System.out.println("╔════════════════════════════════════════════════════╗");
+        System.out.printf ("║  [%s] %s%n", code, intitule);
+        System.out.printf ("║  Inscrits : %d/%d  |  Groupes : %d%n",
             etudiants.size(), capacite, groupes.size());
-        System.out.println("*****************************************************");
+        System.out.println("╠════════════════════════════════════════════════════╣");
         if (etudiants.isEmpty()) {
-            System.out.println(">  Aucun étudiant inscrit.");
+            System.out.println("║  Aucun étudiant inscrit.");
         } else {
             for (Etudiant e : etudiants) {
-                double moy = calculerMoyenne(e);
-                System.out.printf("║  %-24s [%s]  →  %s%n",
+                //Supression de la redondance et utilisation de la logique de calcul dans Inscription.java
+                double moy = -1.0;
+                for (core.actors.Inscription ins : e.getInscription()) {
+                    if (ins.getGroupe().getCours() == this) {
+                        try {
+                            moy = ins.calculerMoyenne();
+                        } catch (core.exceptions.MoyenneIndisponibleException ex) {
+                            moy = -1.0;
+                        }
+                        break;
+                    }
+                }
+                System.out.printf("║  %-24s [%s]  ->  %s%n",
                     e.getNom() + " " + e.getPrenom(),
                     e.getMatricule(),
                     moy >= 0 ? String.format("%.2f/20", moy) : "—");
             }
         }
-        System.out.println("*****************************************************");
+        System.out.println("╚════════════════════════════════════════════════════╝");
     }
 
     public String     getCode()           { return code;                }
