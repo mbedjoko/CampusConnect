@@ -55,12 +55,8 @@ public void addNote(Note note) {
      * </p>
      * 
      * @return la moyenne ponderée
-     * @return l'etudiant associé a cette inscription
-     * @return le groupe de cours concerné
-     * @return la liste des notes obtenues
      * @throws MoyenneIndisponibleException si la liste des notes est vide
      */
-
 public double calculerMoyenne() throws MoyenneIndisponibleException {
         if (notes.isEmpty()) {
             throw new MoyenneIndisponibleException("calcul impossible : Aucune note enregistree pour le cours lie au groupe" + groupe.toString());
@@ -79,12 +75,17 @@ public double calculerMoyenne() throws MoyenneIndisponibleException {
         return sum / coeffSum;
     }
 
+    /**@return l'etudiant associé a cette inscription */
     public Etudiant getEtudiant() {
         return etudiant;
     }
+
+    /**@return le groupe de cours concerné */
     public Groupe getGroupe() {
         return groupe;
     }
+
+    /**@return la liste des notes obtenues */
     public List<Note> getNotes() {
         return notes;
     }

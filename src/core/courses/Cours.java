@@ -140,8 +140,19 @@ public class Cours {
             System.out.println("║  Aucun étudiant inscrit.");
         } else {
             for (Etudiant e : etudiants) {
-                double moy = calculerMoyenne(e);
-                System.out.printf("║  %-24s [%s]  →  %s%n",
+                //Supression de la redondance et utilisation de la logique de calcul dans Inscription.java
+                double moy = -1.0;
+                for (core.actors.Inscription ins : e.getInscription()) {
+                    if (ins.getGroupe().getCours() == this) {
+                        try {
+                            moy = ins.calculerMoyenne();
+                        } catch (core.exceptions.MoyenneIndisponibleException ex) {
+                            moy = -1.0;
+                        }
+                        break;
+                    }
+                }
+                System.out.printf("║  %-24s [%s]  ->  %s%n",
                     e.getNom() + " " + e.getPrenom(),
                     e.getMatricule(),
                     moy >= 0 ? String.format("%.2f/20", moy) : "—");

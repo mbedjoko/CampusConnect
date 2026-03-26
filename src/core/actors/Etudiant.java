@@ -88,15 +88,15 @@ public class Etudiant extends Personne {
         StringBuilder sb = new StringBuilder();
 
         sb.append("\n* RELEVE DE NOTES GLOBAL\n");
-        sb.append("ETUDIANT  : ").append(this.getName()).append("\n");
+        sb.append("ETUDIANT : ").append(this.getName()).append("\n");
         sb.append("MATRICULE : ").append(this.getMatricule()).append("\n");
-        sb.append("FILIERE   : ").append(this.getFiliere()).append("\n");
+        sb.append("FILIERE : ").append(this.getFiliere()).append("\n");
 
         for (Inscription ins : inscriptions) {
-            sb.append("GROUPE    : ").append(ins.getGroupe().toString()).append("\n");
+            sb.append("GROUPE : ").append(ins.getGroupe().toString()).append("\n");
             // FIX: MATIERE = nom de la matiere via getGroupId(), pas toString() du groupe
-            sb.append("MATIERE   : ").append(ins.getGroupe().getGroupId()).append("\n");
-            sb.append("NOTES     : ");
+            sb.append("MATIERE : ").append(ins.getGroupe().getGroupId()).append("\n");
+            sb.append("NOTES : ");
             for (Note n : ins.getNotes()) {
                 sb.append(n.getValeur()).append(" (coeff ").append(n.getCoefficient()).append(") | ");
             }
@@ -139,14 +139,22 @@ public class Etudiant extends Personne {
     }
 
     /** @return le matricule de l'etudiant */
-    public String getMatricule() { return matricule; }
+    public String getMatricule() {
+        return matricule;
+    }
 
     /** @return la liste d'inscriptions */
-    public List<Inscription> getInscriptions() { return inscriptions; }
+    public List<Inscription> getInscriptions() {
+        return inscriptions;
+    }
 
     /** @return l'annee d'etude actuelle */
-    public String getAnneeEtude() { return anneeEtude; }
+    public String getAnneeEtude() {
+        return anneeEtude;
+    }
 
     /** @return la filiere */
-    public String getFiliere() { return filiere; }
+    public String getFiliere() {
+        return filiere;
+    }
 }

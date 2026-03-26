@@ -54,6 +54,7 @@ public class Enseignant extends Personne {
             this.coursEnseignes.add(cours);
         }
     }
+    
 
     /**
      * methode d'affichage pour inclure les details professionnels et la trace des enseignements
@@ -88,10 +89,14 @@ public class Enseignant extends Personne {
     }
 
     /** @return le statut de l'enseignant */
-    public String getStatut() { return statut; }
+    public String getStatut() {
+        return statut;
+    }
 
     /** @return le departement de rattachement */
-    public String getDepartement() { return departement; }
+    public String getDepartement() {
+        return departement;
+    }
 
     /** @return la liste des cours dispenses */
     public List<Cours> getCoursEnseignes() {
